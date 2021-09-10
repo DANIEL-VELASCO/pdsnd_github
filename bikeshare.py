@@ -229,7 +229,7 @@ def user_stats(city,df):
         # TO DO: Display earliest, most recent, and most common year of birth
         print('\nThe earlisest birth year is {}'.format(str(df['Birth Year'].min())))
         print('\nThe most recent birth year is {}'.format(str(df['Birth Year'].max())))
-        print('\nThe most common birth year is {}'.format(str(df['Birth Year'].value_counts().index.tolist()[0])))
+        print('\nThe most common birth year is {}'.format(str(df['Birth Year'].value_counts().index[0])))
 
 
     print("\nThis took %s seconds." % (time.time() - start_time))
