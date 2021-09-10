@@ -117,7 +117,7 @@ def load_data(city, month, day):
 
     return df
 
-def display_data(df):
+def display_five_row(df):
 
     visualize_data = ''
     start_index = 0
@@ -241,7 +241,7 @@ def main():
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
-        display_data(df)
+        display_five_row(df)
 
         time_stats(df)
         station_stats(df)
