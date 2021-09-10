@@ -117,7 +117,7 @@ def load_data(city, month, day):
 
     return df
 
-def display_data(df):
+def display_five_row(df):
 
     """Displays 5 lines of data if the user type yes
     Args:
@@ -179,26 +179,21 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # TO DO: display most commonly used start station
-    most_freq_start_station = df['Start Station'].value_counts().index.tolist()[0]
-    counts_most_freq_start_station = df['Start Station'].value_counts()[most_freq_start_station]
-    print("the most common start station is {} occurring {} times".format(most_freq_start_station,counts_most_freq_start_station))
+    def calculates_most_frequent_stations(station_field):
+        most_frequent = df[station_field].value_counts().index.tolist()[0]
+        counts_most_frequent = df[station_field].value_counts()[most_frequent]
+        print("the most common {0} is {1} occurring {2} times".format(station_field,most_frequent,counts_most_frequent))
 
 
-    # TO DO: display most commonly used end station
-    most_freq_end_station = df['End Station'].value_counts().index.tolist()[0]
-    counts_most_freq_end_station = df['End Station'].value_counts()[most_freq_end_station]
-    print("the most common end station is {} occurring {} times".format(most_freq_end_station,counts_most_freq_end_station))
-
-    # TO DO: display most frequent combination of start station and end station trip
-    df['start_end_stations'] = df['Start Station'] + ' - ' + df['End Station']
-    most_frequent_combination = df['start_end_stations'].value_counts().index.tolist()[0]
-    counts_most_frequent_combination = df['start_end_stations'].value_counts()[most_frequent_combination]
-    print("the most common combination of start and end stations trip is {} occurring {} times".format(most_frequent_combination,counts_most_frequent_combination))
-
+    calculates_most_frequent_stations('Start Station')
+    calculates_most_frequent_stations('End Station')
+    df['Start and end station combination'] = df['Start Station'] + ' - ' + df['End Station']
+    calculates_most_frequent_stations('Start and end station combination')
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
+
 
 
 def trip_duration_stats(df):
@@ -240,7 +235,7 @@ def user_stats(city,df):
         # TO DO: Display earliest, most recent, and most common year of birth
         print('\nThe earlisest birth year is {}'.format(str(df['Birth Year'].min())))
         print('\nThe most recent birth year is {}'.format(str(df['Birth Year'].max())))
-        print('\nThe most common birth year is {}'.format(str(df['Birth Year'].value_counts().index.tolist()[0])))
+        print('\nThe most common birth year is {}'.format(str(df['Birth Year'].value_counts().index[0])))
 
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -252,7 +247,7 @@ def main():
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
-        display_data(df)
+        display_five_row(df)
 
         time_stats(df)
         station_stats(df)
