@@ -119,6 +119,12 @@ def load_data(city, month, day):
 
 def display_data(df):
 
+    """Displays 5 lines of data if the user type yes
+    Args:
+        df - dataframe to be displayed
+    """
+
+
     visualize_data = ''
     start_index = 0
     last_index = 5
