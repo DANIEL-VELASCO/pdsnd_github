@@ -157,7 +157,7 @@ def time_stats(df):
     print("the most common day of the week is {} occurring {} times".format(most_freq_day,count_most_freq_day))
 
     # TO DO: display the most common start hour
-    df['start_hour'] = df['Start Time'].dt.hour
+    df['start_hour'] = df['Start Time'].dt.hour       # Extracts the hour from the start_hour field
     most_freq_start_hour = df['start_hour'].value_counts().index.tolist()[0]
     count_most_freq_start_hour = df['start_hour'].value_counts()[most_freq_start_hour]
     print("the most common start hour is {} occurring {} times".format(most_freq_start_hour,count_most_freq_start_hour))
