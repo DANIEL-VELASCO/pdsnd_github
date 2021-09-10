@@ -1,1 +1,5 @@
 .github/**
+
+# Ignore All (xlsx and csv) files
+*.xlsx
+*.csv
